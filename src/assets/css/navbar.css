@@ -1,0 +1,101 @@
+h1,.logo{
+    text-align: center;
+    min-width: 25%;
+
+}
+.login{
+    text-align: center;
+    font-size: 200%;
+    
+}
+a:link{
+    text-decoration: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing:2.3px;
+    font-size: calc(15vw/10);
+    
+
+}
+.signup{
+    text-align: center;
+    font-size: 200%;
+    
+}
+
+ul {
+    list-style-type: none;
+    min-width: 200px;
+    
+} 
+
+.btn1{
+    box-shadow: 0 20px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: red;
+    background-position: 5rem;
+    margin-left: calc(390vw/10);
+    border-radius: 10px;
+    height: calc(20vw/10);
+    width: calc(90vw/10);
+}
+
+.btn2{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color:red;
+    margin-left: calc(50vw/10);
+    border-radius: 10px;
+    height: calc(20vw/10);
+    width: calc(90vw/10);
+   
+}
+
+.btn1:hover{
+    box-shadow:2px 2px 22px 22px rgb(218, 218, 49);
+    background-color: rgb(70, 101, 206);
+    background-position: 5rem;
+    opacity: 1;
+    transition: ease-in .5s;
+}
+
+.btn2:hover{
+    box-shadow:2px 2px 22px 22px rgb(218, 218, 49);
+    background-color: rgb(70, 101, 206);
+    margin-left: calc(50vw/10);
+   opacity: 1;
+   transition: ease-in .5s;
+}
+
+a:hover {
+    color:rgb(218, 218, 49);
+    text-decoration: none;
+    opacity: 1;
+    transition: ease-in .5s;
+    
+}
+
+.logout-button {
+    background-color: aliceblue;
+    font-size: 50px;
+    position: relative;
+    float: right;
+    bottom: -30px;
+    right: 10px;
+    margin: 5px;
+    padding: 0 10px 10px 10px;
+}
+
+.logout-button:hover {
+    background-color: #e44141;
+}
+
+.username {
+    font-size: larger;
+    position: relative;
+    top: 150px;
+    left: 150px;
+    overflow: scroll;
+}
+
+.container {
+    position: sticky; 
+    top: 0;
+}

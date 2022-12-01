@@ -1,0 +1,89 @@
+ body{
+    background-image: url(../images/background3.webp);
+    background-size: cover;
+    width: 100% ;
+    height: 100vh ;
+    background-position: static;
+} 
+
+
+.log_h{
+    color:rgb(218, 218, 49);
+    margin: 5%;
+    margin-left: calc(33vw/10);
+   text-align: center;
+   margin-left: calc(10vw/10);
+}
+
+.email{  
+    background-color:white;
+    padding: 1.3vh;
+    
+}
+
+.password{
+    background-color:white;
+    padding: 1.3vh;
+}
+
+.logbtn{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color:rgb(242, 30, 30);
+    margin-left: calc(23vw/10);
+    border-radius: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+    font-size: calc(20vw/10);
+    width: calc(125vw/10);
+    color:rgb(29, 29, 165)
+    
+}
+
+.logbtn:hover{
+    box-shadow:2px 2px 22px 22px rgb(218, 218, 49);
+    background-color:rgb(242, 30, 30);
+    color: rgb(218, 218, 49);
+   opacity: 1;
+   transition: ease-in .35s;
+}
+
+.main{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding: 90px 0 90px 0;
+    margin-left: 30px;
+}
+
+.main1{
+    display: flex;
+    justify-content: center;
+    height: 325px;
+    width: 20%;
+    box-shadow:2px 2px 22px 22px rgb(218, 218, 49);
+    background-color: rgb(70, 101, 206);
+    border-radius: 15%;
+}
+
+.email_icon{
+    height: 50px;
+    width: 50px;
+    position: relative;
+   top: 16px;
+   padding-right: 10px;
+}
+
+.pass{
+    height: 50px;
+    width: 50px;
+    position: relative;
+    top: 16px;
+    padding-right: 10px;
+   
+}
+
+.emailbox,.passbox{
+        margin: 1vh;
+        position: relative;
+        
+}
