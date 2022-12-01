@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchCards = async () => {
-      const response = await fetch('http://localhost:9000/api/cards', {
+      const response = await fetch('http://PokeCha.onrender.com/api/cards', {
         headers: {'Authorization': `Bearer ${user.token}`},
       })
       const json = await response.json()
