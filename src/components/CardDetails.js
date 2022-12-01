@@ -13,7 +13,7 @@ const CardDetails = ({ card }) => {
       return
     }
 
-    const response = await fetch('https://PokeCha-api.onrender.com' + card._id, {
+    const response = await fetch('https://PokeCha-api.onrender.com/api/cards' + card._id, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
