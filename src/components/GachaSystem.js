@@ -40,7 +40,7 @@ const GachaSystem = () => {
         },
         body: JSON.stringify(card)
       };
-      const response = await fetch('http://PokeCha-api.onrender.com/api/cards', options);
+      const response = await fetch('https://PokeCha-api.onrender.com/api/cards', options);
       const json = await response.json();
       if (response.ok) {
         dispatch({type: 'CREATE_CARDS', payload: json})
