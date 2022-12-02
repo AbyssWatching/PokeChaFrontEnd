@@ -1,4 +1,4 @@
- body{
+body{
     background-image: url(../images/background3.webp);
     background-size: cover;
     width: 100% ;
@@ -10,31 +10,28 @@
 .log_h{
     color:rgb(218, 218, 49);
     margin: 5%;
-    margin-left: calc(33vw/10);
    text-align: center;
-   margin-left: calc(10vw/10);
+  
 }
 
-.email{  
+.email,.password{  
     background-color:white;
-    padding: 1.3vh;
+    padding: 17px;
     
 }
 
-.password{
-    background-color:white;
-    padding: 1.3vh;
-}
+
 
 .logbtn{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     background-color:rgb(242, 30, 30);
-    margin-left: calc(23vw/10);
+    margin-left: 33px;
+    margin-top: 10px;
     border-radius: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     letter-spacing: 2px;
-    font-size: calc(20vw/10);
-    width: calc(125vw/10);
+    font-size:45px;
+    width:320px;
     color:rgb(29, 29, 165)
     
 }
@@ -44,7 +41,7 @@
     background-color:rgb(242, 30, 30);
     color: rgb(218, 218, 49);
    opacity: 1;
-   transition: ease-in .35s;
+   transition: ease-in .30s;
 }
 
 .main{
@@ -53,16 +50,18 @@
     display: flex;
     padding: 90px 0 90px 0;
     margin-left: 30px;
+    
 }
 
 .main1{
     display: flex;
     justify-content: center;
     height: 325px;
-    width: 20%;
+    width: 500px;
     box-shadow:2px 2px 22px 22px rgb(218, 218, 49);
     background-color: rgb(70, 101, 206);
-    border-radius: 15%;
+    border-radius: 10%;
+
 }
 
 .email_icon{
@@ -83,7 +82,8 @@
 }
 
 .emailbox,.passbox{
-        margin: 1vh;
+        margin: 10px;
         position: relative;
+        padding-right: 30px;
         
 }
