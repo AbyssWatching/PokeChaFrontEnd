@@ -1,3 +1,4 @@
+import React from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useCardsContext } from '../hooks/useCardsContext'
 
@@ -5,7 +6,7 @@ const GachaSystem = () => {
   const { user } = useAuthContext()
   const { dispatch } = useCardsContext()
 
-  async function getPokemonData(pokemonId) {
+  async function getPokemonData(pokemonId: number) {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
       const data = await response.json();
       return data;

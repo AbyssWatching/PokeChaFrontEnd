@@ -7,6 +7,7 @@ import Home from './views/Home'
 import Login from './views/Login'
 import Signup from './views/Signup'
 import Navbar from './components/Navbar'
+import React from 'react'
 
 function App() {
   const { user } = useAuthContext()

@@ -1,6 +1,7 @@
 import { useCardsContext } from '../hooks/useCardsContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 import "../assets/css/pokecard.css"
+import React from 'react'
 
 
 

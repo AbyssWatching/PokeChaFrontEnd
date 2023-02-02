@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
 import email_icon from "../assets/images/email_icon.png"
 import password_icon from "../assets/images/pass.png"
+import React from "react"
 
 
 const Signup = () => {
@@ -9,7 +10,7 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const {signup, error, isLoading} = useSignup()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
 
     await signup(email, password)

@@ -2,7 +2,7 @@ import { createContext, useReducer } from 'react'
 
 export const CardsContext = createContext()
 
-export const cardsReducer = (state, action) => {
+export const cardsReducer = (state: { cards: any[] }, action: { type: any; payload: { _id: any } }) => {
   switch (action.type) {
     case 'SET_CARDS': 
       return {
@@ -14,7 +14,7 @@ export const cardsReducer = (state, action) => {
       }
     case 'DELETE_CARD':
       return {
-        cards: state.cards.filter((w) => w._id !== action.payload._id)
+        cards: state.cards.filter((w: { _id: any }) => w._id !== action.payload._id)
       }
     default:
       return state
