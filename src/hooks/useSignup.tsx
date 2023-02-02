@@ -13,7 +13,7 @@ interface SignupResponse {
 export const useSignup = (): [
   string | null, 
   boolean, 
-  (email: string, password: string) => void
+  (email: string, password: string) => Promise<void>
 ] => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ export const useSignup = (): [
 
     if (!response.ok) {
       setIsLoading(false);
-      setError(json.error);
+      setError('error');
     }
     if (response.ok) {
       const user: User = json;
