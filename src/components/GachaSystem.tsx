@@ -2,11 +2,21 @@ import React from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useCardsContext } from '../hooks/useCardsContext'
 
-const GachaSystem = () => {
+interface Card {
+  id: number,
+  name: string,
+  type1: string,
+  type2: string | null,
+  height: number,
+  weight: number,
+  image: string
+}
+
+const GachaSystem: React.FC = () => {
   const { user } = useAuthContext()
   const { dispatch } = useCardsContext()
 
-  async function getPokemonData(pokemonId: number) {
+  async function getPokemonData(pokemonId: number): Promise<any> {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
       const data = await response.json();
       return data;
@@ -23,7 +33,7 @@ const GachaSystem = () => {
       const pokemonWeight = data.weight;
       const pokemonHeight = data.height;
       const pokemonImage = data.sprites.front_default;
-      const card = {
+      const card: Card = {
           id: pokemonId,
           name: pokemonName,
           type1: pokemonType1,

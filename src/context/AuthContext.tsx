@@ -1,30 +1,21 @@
-import { createContext, useReducer, useEffect, Dispatch } from 'react';
-import * as React from 'react'
+import React, { createContext, useReducer, useEffect } from 'react';
 
-interface AuthContextProviderProps {
-  children: React.ReactNode;
+interface AuthState {
+  user: object | null;
 }
 
-export type AuthAction = {
-  type: 'LOGIN' | 'LOGOUT';
-  payload: any;
+interface Action {
+  type: string;
+  payload: object;
+}
+
+const initialState: AuthState = {
+  user: null,
 };
 
-export type AuthContextState = {
-  user: any;
-};
+export const AuthContext = createContext({});
 
-export type AuthContextDispatch = Dispatch<AuthAction>;
-
-export const AuthContext = createContext<{
-  state: AuthContextState;
-  dispatch: AuthContextDispatch;
-}>({
-  state: { user: null },
-  dispatch: () => null,
-});
-
-export const authReducer = (state: AuthContextState, action: AuthAction) => {
+const authReducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
     case 'LOGIN':
       return { user: action.payload };
@@ -35,10 +26,12 @@ export const authReducer = (state: AuthContextState, action: AuthAction) => {
   }
 };
 
-export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [state, dispatch] = useReducer(authReducer, {
-    user: null,
-  });
+interface Props {
+  children: React.ReactNode;
+}
+
+export const AuthContextProvider = ({ children }: Props) => {
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user') || 'null');
@@ -48,7 +41,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

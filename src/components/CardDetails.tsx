@@ -1,11 +1,24 @@
+import React from 'react'
 import { useCardsContext } from '../hooks/useCardsContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 import "../assets/css/pokecard.css"
-import React from 'react'
 
+interface Card {
+  _id: string;
+  id: number;
+  name: string;
+  type1: string;
+  type2: string | null;
+  height: number;
+  weight: number;
+  image: string;
+}
 
+interface Props {
+  card: Card;
+}
 
-const CardDetails = ({ card }) => {
+const CardDetails: React.FC<Props> = ({ card }) => {
   const { dispatch } = useCardsContext()
   const { user } = useAuthContext()
 
@@ -14,7 +27,7 @@ const CardDetails = ({ card }) => {
       return
     }
 
-    const response = await fetch('https://PokeCha-api.onrender.com/api/cards/' + card._id, {
+    const response = await fetch(`https://PokeCha-api.onrender.com/api/cards/${card._id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -23,22 +36,25 @@ const CardDetails = ({ card }) => {
     const json = await response.json()
 
     if (response.ok) {
-      dispatch({type: 'DELETE_CARD', payload: json})
+      dispatch({ type: 'DELETE_CARD', payload: json })
     }
   }
-
 
   return (
     <div className='card-collection'>
       <div className="card-container">
-      <a href={`https://bulbapedia.bulbagarden.net/wiki/${card.name}_(Pokémon)`} target="_blank"><img className='sprite' src={card.image} alt='pokemon'/></a>
+        <a href={`https://bulbapedia.bulbagarden.net/wiki/${card.name}_(Pokémon)`} target="_blank">
+          <img className='sprite' src={card.image} alt='pokemon' />
+        </a>
         <div className='content-container'>
           <h1 className='pokemon-name'> {card.name}</h1>
           <p className='pokemon-id'>#{card.id}</p>
           <p className='pokemon-type'>{card.type1} {card.type2}</p>
           <p className='pokemon-height'>Height: {card.height} dm</p>
           <p className='pokemon-weight'>Weight: {card.weight} hg</p>
-          <button className="btn delete delete-button" onClick={handleClick}><i className="fa fa-trash-o"></i></button>
+          <button className="btn delete delete-button" onClick={handleClick}>
+            <i className="fa fa-trash-o"></i>
+          </button>
         </div>
       </div>
     </div>

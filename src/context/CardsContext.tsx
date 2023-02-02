@@ -1,60 +1,54 @@
-import * as React from 'react';
+import React, { createContext, useReducer } from 'react'
 
-function useReducer(_cardsReducer: (state: CardsState, action: CardAction) => CardsState | { cards: { _id: any; }; }, arg1: { cards: any[]; }): [any, any] {
-  throw new Error('Function not implemented.');
+interface CardAction {
+  type: string,
+  payload: any
 }
 
-export interface CardsState {
-  cards: any[];
+interface CardsState {
+  cards: any[]
 }
 
-export interface CardAction {
-  type: any;
-  payload: { _id: any };
+const initialState: CardsState = {
+  cards: []
 }
 
-export const CardsContext = React.createContext<{
-  state: CardsState;
-  dispatch: React.Dispatch<CardAction>;
-}>({
-  state: { cards: [] },
-  dispatch: () => null,
-});
+const CardsContext = createContext<{ state: CardsState, dispatch: React.Dispatch<CardAction> }>({
+  state: initialState,
+  dispatch: () => null
+})
 
-export const cardsReducer = (state: CardsState, action: CardAction) => {
+const cardsReducer = (state: CardsState, action: CardAction) => {
   switch (action.type) {
-    case 'SET_CARDS':
+    case 'SET_CARDS': 
       return {
-        cards: action.payload,
-      };
+        cards: action.payload
+      }
     case 'CREATE_CARDS':
       return {
-        cards: [action.payload, ...state.cards],
-      };
+        cards: [action.payload, ...state.cards]
+      }
     case 'DELETE_CARD':
       return {
-        cards: state.cards.filter((w) => w._id !== action.payload._id),
-      };
+        cards: state.cards.filter((w) => w._id !== action.payload._id)
+      }
     default:
-      return state;
+      return state
   }
-};
-
-interface CardsContextProviderProps {
-  children: React.ReactNode;
 }
 
-export const CardsContextProvider = ({ children }: CardsContextProviderProps) => {
-  const [state, dispatch] = useReducer(cardsReducer, {
-    cards: [] as any[]
-  })
+interface Props {
+  children: React.ReactNode
+}
+
+const CardsContextProvider = ({ children }: Props) => {
+  const [state, dispatch] = useReducer(cardsReducer, initialState)
 
   return (
     <CardsContext.Provider value={{ state, dispatch }}>
-      {children}
+      { children }
     </CardsContext.Provider>
-  );
-};
+  )
+}
 
-
-
+export { CardsContext, CardsContextProvider, CardAction }
