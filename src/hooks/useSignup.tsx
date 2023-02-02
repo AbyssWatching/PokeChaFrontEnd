@@ -1,37 +1,52 @@
-import { useState } from 'react'
-import { useAuthContext } from './useAuthContext'
+import { useState } from 'react';
+import { useAuthContext } from './useAuthContext';
 
-export const useSignup = () => {
-  const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(null)
-  const { dispatch } = useAuthContext()
+interface User {
+  [key: string]: any;
+}
 
-  const signup = async (email: any, password: any) => {
-    setIsLoading(true)
-    setError(null)
+interface SignupResponse {
+  error?: string;
+  [key: string]: any;
+}
+
+export const useSignup = (): [
+  string | null, 
+  boolean, 
+  (email: string, password: string) => void
+] => {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { dispatch } = useAuthContext();
+
+  const signup = async (email: string, password: string): Promise<void> => {
+    setIsLoading(true);
+    setError(null);
 
     const response = await fetch('https://PokeCha-api.onrender.com/api/user/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, password })
-    })
-    const json = await response.json()
+      body: JSON.stringify({ email, password }),
+    });
+    const json: SignupResponse = await response.json();
 
     if (!response.ok) {
-      setIsLoading(false)
-      setError(json.error)
+      setIsLoading(false);
+      setError(json.error);
     }
     if (response.ok) {
+      const user: User = json;
+
       // save the user to local storage
-      localStorage.setItem('user', JSON.stringify(json))
+      localStorage.setItem('user', JSON.stringify(user));
 
       // update the auth context
-      dispatch({type: 'LOGIN', payload: json})
+      dispatch({type: 'LOGIN', payload: user});
 
       // update loading state
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  return { signup, isLoading, error }
-}
+  return [error, isLoading, signup];
+};

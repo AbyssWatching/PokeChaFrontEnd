@@ -1,34 +1,55 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useReducer, useEffect, Dispatch } from 'react';
+import * as React from 'react'
 
-export const AuthContext = createContext()
+interface AuthContextProviderProps {
+  children: React.ReactNode;
+}
 
-export const authReducer = (state: any, action: { type: any; payload: any }) => {
+export type AuthAction = {
+  type: 'LOGIN' | 'LOGOUT';
+  payload: any;
+};
+
+export type AuthContextState = {
+  user: any;
+};
+
+export type AuthContextDispatch = Dispatch<AuthAction>;
+
+export const AuthContext = createContext<{
+  state: AuthContextState;
+  dispatch: AuthContextDispatch;
+}>({
+  state: { user: null },
+  dispatch: () => null,
+});
+
+export const authReducer = (state: AuthContextState, action: AuthAction) => {
   switch (action.type) {
     case 'LOGIN':
-      return { user: action.payload }
+      return { user: action.payload };
     case 'LOGOUT':
-      return { user: null }
+      return { user: null };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { 
-    user: null
-  })
+export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
+  const [state, dispatch] = useReducer(authReducer, {
+    user: null,
+  });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
     if (user) {
-      dispatch({ type: 'LOGIN', payload: user }) 
+      dispatch({ type: 'LOGIN', payload: user });
     }
-  }, [])
-  
-  return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
-      { children }
-    </AuthContext.Provider>
-  )
+  }, []);
 
-}
+  return (
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
