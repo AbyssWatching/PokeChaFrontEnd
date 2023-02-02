@@ -1,7 +1,6 @@
 import { useEffect }from 'react'
 import { useCardsContext } from "../hooks/useCardsContext"
 import { useAuthContext } from "../hooks/useAuthContext"
-import { useSignup } from "../hooks/useSignup"
 import "../assets/css/pokedex.css"
 
 // components
@@ -11,10 +10,9 @@ import AudioPlayer from '../components/AudioPlayer'
 import React from 'react'
 
 const Home = () => {
-  
-  const { cards: [], dispatch } = useCardsContext()
+  const {cards, dispatch} = useCardsContext()
   const {user} = useAuthContext()
-  const [signupError, signupLoading, signup] = useSignup()
+
   useEffect(() => {
     const fetchCards = async () => {
       const response = await fetch('https://PokeCha-api.onrender.com/api/cards', {
@@ -44,7 +42,7 @@ const Home = () => {
         <AudioPlayer />
         <GachaSystem />
         <br></br>
-        {cards && cards.map((card: { _id: React.Key | null | undefined }) => (
+        {cards && cards.map((card) => (
           <CardDetails key={card._id} card={card} />
         ))}
       </div>
